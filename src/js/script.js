@@ -2,14 +2,30 @@
 $(document).ready(function(){
     $('.carousel__inner').slick({
         speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         prevArrow: `<button type="button" class="slick-prev"><img src="icons/arrow_left.png"></button>`,
         nextArrow: `<button type="button" class="slick-next"><img src="icons/arrow_right.png"></button>`,
+        variableWidth: true,
+        centerMode: true,
         responsive: [
             {
                 breakpoint: 992,
                 settings: {
                     dots: true,
-                    arrows: false
+                    dotsClass: "slick-dots",
+                    arrows: false,
+                    variableWidth: true
+
+                }
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                    dots: true,
+                    dotsClass: "slick-dots",
+                    arrows: false,
+
                 }
             }
         ]
@@ -21,7 +37,6 @@ const tabs = document.querySelectorAll(".catalog__tab");
 const tabsWrapper = document.querySelector(".catalog__tabs");
 const catalogContents = document.querySelectorAll(".catalog__content");
 
-console.log(tabs);
 
 function removeActiveClass(arr, activeClass) {
     arr.forEach((item) => {
@@ -52,19 +67,16 @@ tabsWrapper.addEventListener("click" , e => {
 
     switch (tab.dataset.purpose) {
         case "fitness":
-            console.log("fitness");
             removeActiveClass(catalogContents, "catalog__content_active");
             addActiveClassByDataAttribute(catalogContents, "fitness", "catalog__content_active")
             break;
 
         case "running":
-            console.log("running");
             removeActiveClass(catalogContents, "catalog__content_active");
             addActiveClassByDataAttribute(catalogContents, "running", "catalog__content_active")
             break;
 
         case "triathlon":
-            console.log("triathlon");
             removeActiveClass(catalogContents, "catalog__content_active");
             addActiveClassByDataAttribute(catalogContents, "triathlon", "catalog__content_active")
             break;
