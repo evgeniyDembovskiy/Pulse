@@ -105,4 +105,68 @@ cardsLinksBack.forEach(item => {
     }); 
 });
 
+/************** MODAL **************/
+const modalConsultationButtons = document.querySelectorAll("[data-modal=consultation]");
+const modalOverlay = document.querySelector(".overlay");
+const modalConsultation = document.querySelector("#consultation");
+const modalOrder = document.querySelector("#order");
+const modalOrderButtons = document.querySelectorAll(".button_mini");
+const catalogItemDescriptions = document.querySelectorAll(".catalog-item__subtitle");
 
+function showModal(modal) {
+    modalOverlay.style.visibility = "visible";
+    modalOverlay.style.opacity = 1;
+    modal.style.display = "block";
+    modal.style.opacity = 1;
+
+    modal.querySelector(".modal__close").addEventListener("click", () => hideModal(modal));
+    modalOverlay.addEventListener("click", e => {
+        if (e.target.classList.contains("overlay")) {
+            hideModal(modal);
+        }
+    });
+}
+
+function hideModal(modal) {
+    modalOverlay.style.opacity = 0;        
+    modalOverlay.style.visibility = "hidden";
+    modal.style.display = "none";  
+}
+
+modalConsultationButtons.forEach(item => {
+    item.addEventListener("click", () => showModal(modalConsultation));
+});
+
+modalOrderButtons.forEach((item, i) => {
+    item.addEventListener("click", () => {
+        modalOrder.querySelector(".modal__descr").innerHTML = catalogItemDescriptions[i].innerHTML;
+        showModal(modalOrder)
+    });
+    
+});
+
+
+function validateForms(form) {
+    $(form).validate({
+        rules: {
+            name: "required",
+            phone: "required",
+            email: {
+                required: true,
+                email: true
+            }
+        }, 
+        messages: {
+            name: "Пожалуйста, введите свое имя",
+            phone: "Пожалуйста, введите свой номер телефона",
+            email: {
+              required: "Пожалуйста, введите свой e-mail",
+              email: "Неправильно введен адрес почты"
+            }
+          }
+    });
+}
+
+validateForms("#consultation form");
+validateForms("#order form");
+validateForms("#consultation-form");

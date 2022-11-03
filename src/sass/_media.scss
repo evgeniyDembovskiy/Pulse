@@ -100,6 +100,10 @@
             }
         }
     }
+
+    .modal {
+        min-height: 370px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -236,6 +240,10 @@
             height: 40px;
         }
     }
+
+    .modal {
+        min-height: 345px;
+    }
 }
 
 @media (max-width: 575px) { 
@@ -320,6 +328,14 @@
                 transform: skewX(-20deg) translateX(-30px);
             }
         }
+        &-item {
+            &__content {
+                transition: all .2s;
+            }
+            &__list {
+                transition: all .2s;
+            }
+        }
     }
 
     .reviews {
@@ -342,6 +358,19 @@
         &__addr {
             text-align: center;
             margin-bottom: 10px;
+        }
+    }
+
+    .modal {
+        width: 350px;
+
+        &__subtitle {
+            font-size: 22px;
+            line-height: 22px;
+            margin-bottom: 10px;
+        }
+        &__close {
+            display: none;
         }
     }
 }
