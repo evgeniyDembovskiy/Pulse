@@ -112,6 +112,7 @@ const modalConsultation = document.querySelector("#consultation");
 const modalOrder = document.querySelector("#order");
 const modalOrderButtons = document.querySelectorAll(".button_mini");
 const catalogItemDescriptions = document.querySelectorAll(".catalog-item__subtitle");
+const modalThanks = document.querySelector("#thanks");
 
 function showModal(modal) {
     modalOverlay.style.visibility = "visible";
@@ -173,3 +174,27 @@ validateForms("#consultation-form");
 
 
 $("input[name=phone]").mask("+7 (999) 999-99-99");
+
+$("form").submit(function(e) {
+    e.preventDefault();
+
+    if (!$(this).valid()) {
+        return;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "mailer/smart.php",
+        data: $(this).serialize()
+    }).done(function() {
+       $(this).find("input").val("");
+       hideModal(modalConsultation);
+       hideModal(modalOrder);
+       showModal(modalThanks);
+    //    $("#consultation, #order").fadeOut();
+    //    $(".overlay", "#thanks").fadeIn("slow");
+       
+       $("form").trigger("reset");
+    });
+    return false;
+});
