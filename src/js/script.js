@@ -198,3 +198,19 @@ $("form").submit(function(e) {
     });
     return false;
 });
+
+
+const arrowUp = document.querySelector(".pageup");
+
+// Smooth scroll 
+window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 1300) {
+        arrowUp.style.visibility = "visible";
+        arrowUp.style.opacity = 1;
+    } else {
+        arrowUp.style.visibility = "hidden";
+        arrowUp.style.opacity = 0;
+    }
+});
+
+new WOW().init();

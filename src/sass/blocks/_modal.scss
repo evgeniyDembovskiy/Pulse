@@ -23,12 +23,12 @@
 
     &__close {
         position: absolute;
-        top: 0;
+        top: -15px;
         right: -45px;
         font-size: 21px;
         color: $main-color;
         line-height: 20px;
-        font-size: 50px;
+        font-size: 35px;
         transition: all .2s;
         &:hover {
             cursor: pointer;
